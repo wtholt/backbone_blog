@@ -63,7 +63,17 @@ app.ListView = Backbone.View.extend({
   },
   addAll: function(){
     this.$('#blog-list').html('');
-    app.blogList.each(this.addOne, this);
+    switch(window.filter){
+      case 'pending':
+        _.each(app.blogList.remaining(), this.addOne);
+        break;
+      case 'completed':
+        _.each(app.blogList.completed(), this.addOne);
+        break;
+      default:
+        app.todoList.each(this.addOne, this);
+        break;
+    }
   },
   newAttributes: function(){
     return {

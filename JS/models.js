@@ -9,7 +9,15 @@ app.Blog = Backbone.Model.extend({
 
 app.BlogList = Backbone.Collection.extend({
   model: app.Blog,
-  localStorage: new Store("backbone-blog")
+  localStorage: new Store("backbone-blog"),
+  completed: function(){
+    return this.filter(function( blog ){
+      return blog.get('completed');
+    });
+  },
+  remaining: function() {
+    return this.without.apply( this, this.completed() );
+  }
 });
 
 app.blogList = new app.BlogList();
