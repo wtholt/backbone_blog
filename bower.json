@@ -1,0 +1,15 @@
+{
+  "name": "backbone_blog",
+  "version": "0.0.0",
+  "authors": [
+    "William Holt <wtholt27@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
