@@ -3,11 +3,42 @@ app.BlogView = Backbone.View.extend({
   template: _.template($('#item-template').html()),
   render: function(){
     this.$el.html(this.template(this.model.toJSON()));
+    this.input = this.$('.edit');
     return this;
+  },
+  initialize: function(){
+    this.model.on('change', this.render, this);
+    this.model.on('destroy', this.remove, this);
+  },
+  events: {
+    'dblclick label' : 'edit',
+    'keypress .edit' : 'updateOnEnter',
+    'blur .edit' : 'close',
+    'click .toggle': 'toggleCompleted',
+    'click .destroy': 'destroy'
+  },
+  edit: function(){
+    this.$el.addClass('editing');
+    this.input.focus();
+  },
+  close: function(){
+    var value = this.input.val().trim();
+    if(value) {
+      this.model.save({title: value});
+    }
+    this.$el.removeClass('editing');
+  },
+  updateOnEnter: function(e){
+    if(e.which == 13){
+      this.close();
+    }
+  },
+  destroy: function(){
+    this.model.destroy();
   }
 });
 
-app.BlogView = Backbone.View.extend({
+app.ListView = Backbone.View.extend({
   el: '#blogapp',
   initialize: function () {
     this.input = this.$('#new-blog');
@@ -28,6 +59,7 @@ app.BlogView = Backbone.View.extend({
   addOne: function(blog){
     var view = new app.BlogView({model: blog});
     $('#blog-list').append(view.render().el);
+    console.log('blog is created');
   },
   addAll: function(){
     this.$('#blog-list').html('');
@@ -42,4 +74,4 @@ app.BlogView = Backbone.View.extend({
 });
 
 
-app.BlogView = new app.BlogView();
+app.listView = new app.ListView();

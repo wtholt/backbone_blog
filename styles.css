@@ -1,0 +1,9 @@
+#blog-list input.edit {
+  display: none;
+}
+#blog-list .editing label {
+  display: none;
+}
+#blog-list .editing input.edit{
+  display: inline;
+}
