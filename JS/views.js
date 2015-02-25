@@ -14,7 +14,7 @@ app.BlogView = Backbone.View.extend({
     'dblclick label' : 'edit',
     'keypress .edit' : 'updateOnEnter',
     'blur .edit' : 'close',
-    'click .toggle': 'toggleCompleted',
+    'click .toggle' : 'toggleCompleted',
     'click .destroy': 'destroy'
   },
   edit: function(){
@@ -32,6 +32,9 @@ app.BlogView = Backbone.View.extend({
     if(e.which == 13){
       this.close();
     }
+  },
+  toggleCompleted: function(){
+    this.model.toggle();
   },
   destroy: function(){
     this.model.destroy();

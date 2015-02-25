@@ -3,7 +3,7 @@ app.Router = Backbone.Router.extend({
     '*filter' : 'setFilter'
   },
   setFilter: function(params) {
-    console.log('app.router.params = + params');
+    console.log('app.router.params = ' + params);
     window.filter = params.trim() || '';
     app.blogList.trigger('reset');
   }

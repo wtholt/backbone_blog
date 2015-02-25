@@ -7,3 +7,6 @@
 #blog-list .editing input.edit{
   display: inline;
 }
+#blogapp ul {
+  list-style-type: none;
+}
